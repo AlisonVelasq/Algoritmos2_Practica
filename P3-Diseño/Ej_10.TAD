@@ -1,0 +1,70 @@
+Ejercicio 10 
+Diseñar el TAD Cola(Nat) y el TAD Pila(Nat) utilizando una secuencia como estructura de representacion.
+
+A) TAD Cola(Nat)
+
+//secu(α) se explica con Cola(α), eso seria en otro caso, en este caso:
+(*) secu(α) se explica con Cola(Nat) ≠ la estr de Cola(Nat) es secu
+(*) a la derecha del "se explica con" siempre va un TAD 
+//aclaracion: todo lo que esta en minuscula(algo) con observadores del TAD Cola(α)
+-----------------------------------------------------------------
+Interfaz:
+	parametros formales:
+		géneros:	Nat
+		funcion:
+	
+	se explica con: Cola(Nat) //del TAD
+	géneros:	cola(Nat)  // esta vez si es el genero del diseño
+	
+	VACIA() -> res: cola(Nat)
+	Pre ≡ {true}
+	Post ≡ {res =obs vacia} //vacia es UN generador del TAD COLA 
+	Complejidad: Θ(1)
+
+	PROXIMO(in c:cola(Nat)) -> res: Nat
+	Pre ≡ {¬vacía?(c)}
+	Post ≡ {res = obs proximo(c)} 
+	Complejidad: Θ(1)
+	
+	DESENCOLAR(in/out c: cola(Nat)) -> res: Cola(Nat)
+	Pre ≡ {¬vacía?(c) ∧ c =obs c0 }
+	Post ≡ {res =obs desencolar(c)} 
+	Complejidad: Θ(1) //saco el primero, i.e el proximo, que es O(1)
+	
+	ENCOLAR(in n:Nat, in c:cola(Nat)) -> res: Cola(Nat)
+	Pre ≡ {c =obs c0}
+	Post ≡ {res =obs encolar(n,c)}
+	Complejidad: Θ(1) ?
+	// Complejidad: O(copy(α)) 
+	//Aliasing: el elemento n se encola por copia
+	//no es necesario hacerlo, por que se que mi α es un Nat (no puede ser uina secuncia por ej) 
+	
+	TAMAÑO(in c: cola(Nat)) -> res: Nat
+	Pre ≡ {true}
+	Pos ≡ {res =obs tamaño(c)}
+	Complejidad: Θ(1)
+	
+	----------------------------------------------------------------
+	Representacion:
+	//aclaracion: a mis operacioines aiempre le paso por parametro un 
+	// cola(α) != Cola(α) (Cola(α) es del TAD)
+	
+	cola(Nat) se representa con secu(Nat) 
+	
+	Rep: secu(Nat) -> bool
+	Rep(s) ≡ true
+	
+	//defino la funcion de Abs mediante los generadores de cola y observadores de secu
+	Abs: secu(Nat) s -> cola(Nat)
+	Abs(s) ≡ if vacia?(s) then vacia 
+		else encolar(prim(s^) • Abs(fin(s^)))
+	
+	-----------------------------------------------	
+	(*) secu(α) se explica con Secu(α) (del TAD) 
+	(*) s^: es el sompreito arriba de s que hace la abstracion
+	^ : secu(α) -> Secu(α) (del TAD)
+	
+	B) TAD Pila(Nat) esta en el apunte de modulos basicos pag_33 
+	lista(α) se explica con Secu(α) entonces es analago
+	 
+	
