@@ -6,7 +6,7 @@ A) TAD Cola(Nat)
 //secu(α) se explica con Cola(α), eso seria en otro caso, en este caso:
 (*) secu(α) se explica con Cola(Nat) ≠ la estr de Cola(Nat) es secu
 (*) a la derecha del "se explica con" siempre va un TAD 
-//aclaracion: todo lo que esta en minuscula(algo) con observadores del TAD Cola(α)
+//aclaracion: todo lo que esta en minuscula(algo) con observadores del TAD Cola(α) 
 -----------------------------------------------------------------
 Interfaz:
 	parametros formales:
