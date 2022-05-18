@@ -49,7 +49,7 @@ Interfaz:
 	(*)el cero no es natural (el 0 en el array representara los lugares vacios)
 	
 	Rep: estr -> bool
-	(∀e:estr)
+	(∀e:estr) 
 	Rep(e) ≡ (∀i:nat)((0≤i≤n ∧ e.elem[i] != 0 )⇒L e.inf ≤ e.elem[i] ≤ e.sup)
 	//esta rep tambien implica que todos los lugares no ocupados efectivamente son cero
 
