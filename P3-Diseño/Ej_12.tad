@@ -1,0 +1,62 @@
+Ejercicio 12 
+Diseñar el TAD Conjunto de naturales en rango 
+utilizando un arreglo. El arreglo debe contener la
+mayor parte de la informacion, pero la estructura de representacion puede contener la informacion adicional que sea necesaria.
+
+el tad guarda el elementos que esten en el rango mayor/igual al lower y menor/igual al upper
+
+observadores del TAD: ∈, lower , upper:
+generadores del TAD: Ø, Ag 
+
+-----------------------------------------------------
+Interfaz:
+	parametros formales:
+		géneros:	α
+		funcion: COPIAR(in a: α)--bla bla
+		
+	se explica con: conjenrango(α) (TAD)
+	géneros:	conjrang(α)
+	
+	VACIO(in n: nat, in m; nat)-> res: conjrang(α)
+	Pre ≡ {n ≤ m}
+	Post ≡ {res =obs Ø(n,m)}
+	
+	LOWER(in cr: conjrang(α))-> res: nat
+	Pre ≡ {true}
+	Post ≡ {res =obs lower(cr)}
+	Complejidad: Θ(1)
+	
+	UPPER(in cr: conjrang(α))-> res: nat
+	Pre ≡ {true}
+	Post ≡ {res =obs upper(cr)}
+	Complejidad: Θ(1)
+	
+	PERTENECE(in n: nat, in cr: conjrang(α)) -> res: bool
+	Pre ≡ {true}
+	Post ≡ {res =obs (n ∈ cr)}
+	
+	AGREGAR(in n: nat, in/out cr: conjrang(α)) -> res: conjrang(α)
+	Pre ≡ {cr =obs cr0 ∧ (lower(cr) ≤ n ≤ upper(cr))}
+	Post ≡ {res = obs Ag(n,cr)}
+	
+	----------------------------------------------
+	Representacion:
+	
+	conjrang(α) se representa con estr
+	donde estr es tupla⟨ elem: array[0,...,n], inf; nat, sup: nat⟩
+	
+	(*)los elementos en el array pueden guardarse en cualquier orden y cualquier posicion, no nesesariamente ordenados y contiguos, asi repetamos la nocion de conjunto, lo importante es que esten en rango
+	(*)el cero no es natural (el 0 en el array representara los lugares vacios)
+	
+	Rep: estr -> bool
+	(∀e:estr) 
+	Rep(e) ≡ (∀i:nat)((0≤i≤n ∧ e.elem[i] != 0 )⇒L e.inf ≤ e.elem[i] ≤ e.sup)
+	//esta rep tambien implica que todos los lugares no ocupados efectivamente son cero
+
+	Abs: estr -> conjrang(α)
+	Abs(e) ≡ cr: conjrang(α) /
+	e.inf =obs lower(cr) ∧ e.sup =obs upper(cr) ∧ 
+	(∀i:nat)((0≤i≤n ⇒l (e.inf ≤ e.elem[i] ≤ e.sup ⇐⇒ e.elem[i] ∈ cr))
+	
+	//tengo dudas con la ultima linea
+	
