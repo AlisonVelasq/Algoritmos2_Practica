@@ -1,0 +1,38 @@
+Ejercicio 8 (Oficina estatal) 
+el siguiente TAD que modela el comportamiento de una oficina del Estado que procesa tramites.
+el id es el numero de tramite 
+Cada tramite esta identificado por un ID y se le asigna una categorıa al momento de ingresar. (1)
+Todos los tramites pendientes que pertenecen a una categorıa prioritaria se consideran prioritarios (4)
+--------------------------------------------------------------
+oficina se representa con estr
+donde estr es tupla ⟨catPrioritarias: conj(categoria), tramites: dicc(id, categoria), tramites×Cat: dicc(categoria, conj(id)), pendPrioritarios: secu(id), pendientes: secu(id)⟩
+
+//tramites son todos los tramites existentes
+a) Escribir formalmente y en castellano el invariante de representacion.
+
+1. e.pendientes ⊆ e.pendPrioritarios
+2. la secu pendPrioritarios ⊆ pendientes y pendientes ⊂ las claves de tramites
+3. cada id de la secu pendPrioritarios (lo tomo como clave), SU significado (categoria) en en el dicc TRAMITES debe pertenecer al conj  catPrioritarias//creo que es igual al de abajo
+4. cada clave del dicc tramitesxCategoria que este en conj catPrioritarias, ENTONCES su significado (es un conj(id)) del dicc debe estar incluido en la secu(id) pendPrioritarios
+5. el dicc tramites y el dicc tramitesxCategoria debe corresponderte completamente (doble inclucion), los dos dicc dicen lo mismo en distintas palabras
+6. el conj catPrioritarias ⊆ las categorias existentes (claves de tramitesxCat)
+
+(*)la secu(α) se explica con un conj(α) por eso puedo usar el ⊆
+
+Rep: estr -> boolean
+(∀e:estr)
+Rep(e) ≡ 
+(e.pendientes ⊆ e.pendPrioritarios) ∧ 
+(e.pendPrioritarios ⊆ e.pendientes) ∧ (e.pendientes ⊆ claves(e.tramites) ∧
+(∀c:categoria)((def?(e.tramitesxCat) ∧ (c ∈ e.catPrioritarias)) ⇒L obtener(c, e.tramitesxCat) ⊆ e.pendPrioritarios) ∧
+e.catPrioritarias ⊆ claves(e.tramitesxCat) ∧
+//me falta el 5 
+ 
+ b) Escribir la funcion de abstraccion.
+ 
+ Abs: estr -> oficina 
+ Abs(e) ≡ o:oficina/
+ claves(e.tramitesxCat) =obs categorias(o) ∧ e.pendientes =obd pendientes(o) ∧ catPrioritarias =obs prioritarias(o) ∧ 
+ (∀i:id)(def?(e.tramites)⇒L obtener(i, e.tramites) =obs catTram(i, o)) ∧ e.pendPrioritarios =obs pendPrioritarios(o)
+
+//debo considerar filtarPorCategorias?
