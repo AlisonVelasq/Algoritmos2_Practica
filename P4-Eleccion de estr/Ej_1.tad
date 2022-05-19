@@ -1,0 +1,36 @@
+Ejercicio 1
+Considere el TAD Multiconjunto(Nat).
+1. Diseñelo utilizando listas enlazadas de naturales. Calcule el orden de complejidad (de peor caso) de las
+operaciones de insercion, borrado y calculo de la cantidad de repeticiones de un elemento.
+
+Multiconjunto(Nat) se representa con estr 
+donde estr es LinkedList(Nat) 
+(*) uso lista(α) del apunte de modulos (es una lista doblemente enlazada)
+(*)leyendo el modulo lista(α) vemos que:
+//deberia usar esto para la estr? me parece que no
+lista(α) se representa con lst 
+donde lst es tupla ⟨primero: puntero(nodo), longitud: nat⟩
+donde nodo es tupla(dato:α, anterior:punter(nodo), siguiente: puntero(nodo))
+
+
+- Invariante de Representacion
+//usando como estr directamente lista(α) (creo q si esta bien)
+Rep: LL(Nat) -> boolean
+Rep(l) ≡ true //?
+
+- Funcion de abstracion
+Abs: lista(α) -> Multiconjunto(Nat)
+Abs(l) ≡ m:Multiconjunto(Nat) /
+Longitud(l) =obs #(m) ∧ (∀i:ℕ)(0 ≤ i ≤ Longitud(l) ⇒L l[i] ∈ m) ∧ b 
+tienenLaMismaCantxElem(l, m)
+
+tienenLaMismaCantxElem(l, m) ≡ if vacio?(l, m) then true else( 
+	if DameRepetidos(Primero(l) , l) =obs #(Primero(l), m)  then 
+		tienenLaMismaCantxElem(sacarTodoslosx(l), sacarTodoslosx(m))
+	else false fi )
+	
+DameRepetidos(a, l) ≡ 
+
+
+2. Piense en otras estructuras –m´as all´a de las listas– y estime los ´ordenes de complejidad de peor caso que
+tendr´ıan las operaciones mencionadas.
