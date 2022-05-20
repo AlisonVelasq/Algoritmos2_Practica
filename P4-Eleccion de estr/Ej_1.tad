@@ -30,7 +30,60 @@ tienenLaMismaCantxElem(l, m) ≡ if vacio?(l, m) then true else(
 	else false fi )
 	
 DameRepetidos(a, l) ≡ 
+//creo que se puede hacer de otra forma sin tantos aux
+----------------------------------------------------------------
+Interfaz : 
+	se explica con Multiconjunto(Nat)
+	Géneros:	multiconj //no es del tad, es un parametro formal
+Operaciones: 
+//(paso a "mundo imperativo" los observadores de multiconj, de tal forma de poder usar estos observadores con la estr lista(α))
+//obs, genera y op de multiconj que voy a redefinir : #, Ø, Ag, pertenece
+
+VACIO() -> res:multiconj
+Pre ≡ {true}
+Post ≡ {res =obs Ø}
+
+PERTENECE(in n:Nat, in m:multiconj) -> res:bool
+Pre ≡ {true}
+Post ≡ {res =obs n ∈ m}
+
+AGREGAR(in n: Nat, in/out m:multiconj) -> res: multiconj
+Pre ≡ {m0 = m}
+Post ≡ {res = Ag(n,m)}
+complejidad: Θ(1) //tengo un puntero al ultimo elem
+
+CARDINALxELEM(in n: Nat, in m:multiconj ) -> res: nat
+Pre ≡ {¬VACIA?(m)}
+Post ≡ {res =obs #(n,m)}
+complejidad:	
+Algoritmos:
+
+BORRAR(in n: Nat, in/out m:multiconj) -> res:multiconj
+Pre ≡ {m0 = m}
+Post ≡ {res =obs m-n}
 
 
-2. Piense en otras estructuras –m´as all´a de las listas– y estime los ´ordenes de complejidad de peor caso que
-tendr´ıan las operaciones mencionadas.
+(*) lo que paso como parametros en la interfaz (en este caso multiconj) es lo que quiero representar con una estr, i.e multiconj se representa con lista(α)
+i.e lista(α)^ -> multiconj
+
+------------------------------------------------
+(*)para los algoritmos tengo que usar la estr, es decir listaEnlazada: lista(α)
+y ahi si puedo usar las operaciones que aparecen en el apunte de modulos
+
+Algortimos:
+
+iAgregar(in n : nat, in/out m : multiconj){
+	Lista l;//l=m? // l es la lista con todos los elem del multiconj
+	l.AgregarAtras(m,n) //puedo poner un multiconj y no lista(α), por que multiconj se representa con lista(α)
+	//Θ(1) //por que es una lista de nat 
+}
+
+iBorrar(in n : nat, in/out m : multiconj){
+	Lista l; //de alguna forma tengo mi lista con todos los elementos
+	//quiero borrar un elem, en el modulo de lista no tengo BORRAR :c 
+	(*) como le paso por referencia una lista no modificable no puedo usar el iterador de los modulos 
+	
+	
+}
+
+2. Piense en otras estructuras –mas alla de las listas– y estime los ordenes de complejidad de peor caso que tendrıan las operaciones mencionadas.
