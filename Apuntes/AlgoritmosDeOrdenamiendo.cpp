@@ -40,8 +40,9 @@ void SelectionSort(int arr[], int n){
         for (j = i+1; j < n; j++) {//encuentra el elemento minimo del array con n-i elementos
             if (arr[j] < arr[min])
                 min = j; }
+        }
         swap(&arr[min], &arr[i]); //hago swap el con el minimo e iesimo
-    }}
+    }
 
 void swap(int *xp, int *yp){
     int temp = *xp;
