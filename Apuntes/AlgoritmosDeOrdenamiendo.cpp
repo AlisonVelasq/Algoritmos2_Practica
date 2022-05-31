@@ -10,12 +10,16 @@ actual y el final.
  Ubicarlo en la posición i, intercambiándolo con el ocupante original
 de esa posición.
 
+Costo: O(n^2) en todos los casos
+
 Algoritmos:
 pseudo codigo:
 1: //no es tan descriptivo
 SelectionSort(a:arr[], n: nat){
-    min <- seleccionar_min(i, n-1)
-    intercambiar(i, min) //un swap
+    for( i desde [0, n-2]) {
+        min <- seleccionar_min(i, n-1)
+        intercambiar(i, min) //un swap
+    }
 }
 2:
 SelectionSort(a:arr[], n: nat){
@@ -27,7 +31,7 @@ SelectionSort(a:arr[], n: nat){
     intercambiar(i, min) //un swap
     }
 }
-Costo: O(n^2) en todos los casos
+
 //una posible implementacion
 void SelectionSort(int arr[], int n){
     int i, j, min;
