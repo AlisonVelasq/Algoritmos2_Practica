@@ -77,4 +77,4 @@ Memoria:
 (las categorias backetSort van a ser la unidades, decenas, centenas) y como se ordenan de forma estable no nesecito ordenarlos
 aca las categorias son M=10 (tengo 10 digitos )
 O(n+M) + O() = O(n) //M es constante
--> o() 
+-> o()
