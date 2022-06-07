@@ -10,12 +10,25 @@ potencia(in M: matriz(nat), in n: nat)<-res: matriz(nat)
 //no me convence esta solucion, creo que no estoy haciendo D&C
 sumarPotencias(in M: matriz(nat), in n: nat){
     if (n = 1) {
-        return potencia(M, n)
+        return M //elevo a la 1
     }
     else {
-        return potencia(M, n) + sumarPotencias(M, n-1) 
+        return potencia(M, n) + sumarPotencias(M, n-1)
     }
 }
 Complejidad: NOSE
 
-//otra forma, diviciendo las matriz?
+//otra forma, dividiendo las matriz? NO
+// dividir las sumas de matrices que voy haciendo
+
+sumarPotencias(in M: matriz(nat), in n:nat){
+    nat p = n/2
+
+    if( n = 1 ){
+        return M // elevo a la 1 
+    }
+    else {
+        return potencia(M, p) + sumarPotencias(M, p) + sumarPotencias(M, n) //mmmm
+        //hacer un sumar recursivo 2 con naturales
+    }
+}
