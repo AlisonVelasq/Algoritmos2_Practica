@@ -30,11 +30,12 @@ Memoria:
 
     Sorting por comparacion:
   (*) para algoritmos que ordenan arreglos comprando elem:
-  no se puede mejorar la complejidad O(nlogn) (para el mejor caso)
+  no se puede mejorar la complejidad O(nlogn) (para el mejor caso) //es un teorema
 
   Pero podemos tener algo mejor sin usar Sorting por comparacion:
   (*)por ejemplo si tenemos informacion de los elem, asi no esta sujeta solo al tamaño de entrada
-
+  (Esta es la unica forma de tener complejidad O(n)) //no contradice el teorema anterior
+   
   Algortimos de ordenamiento:
 
   CountingSort(A:arr[], k):
@@ -59,10 +60,17 @@ Memoria:
   (*) tiene sentido si los elem del  array son uniformes respecto a las categorias
 
   Por ej: todos los de [0, 20] < cualquiera entre [20, 100]
-
+  
+  (*) hay implementaciones estables y no estables del bucketSort
+   
+  (*) si lo uso con un Radix 
+  por ejemplo si quiero ordenar por edad:
+  si el k (cant de buckets) esta acotado entonces la complejidad O(k) = O(1)
+   en este ejemplo: k = 10 => O(10)=O(1)
   PseudoCodigo:
 
 
+  
   RadixSort() //para numeros naturales
   (*) idea: los numeros naturales puedo ordenarlos segun el cada uno de sus digitos (primero ordeno las unidades, luego las centenas, decenas, ect)
   (*) para esto debo usar un algoritmo estable
@@ -78,3 +86,6 @@ Memoria:
 aca las categorias son M=10 (tengo 10 digitos )
 O(n+M) + O() = O(n) //M es constante
 -> o()
+     
+  (*) si tengo mas de dos categorias para ordenar en O(n) me conviene usar el bucketSort con el radixSort
+  //casi no hay casos en los que se use con el countingSort
