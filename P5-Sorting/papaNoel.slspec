@@ -1,0 +1,59 @@
+OrdenEntregas(in z : nat, in pedidos : arreglo(tupla(nat,nat))) → res : arreglo(tupla(nat,nat))
+    lista modesto <- vacia()
+    lista opulentos <- vacia()
+    for i<-0 to tam(A) do  
+        if π₂A[i] ≤ 3n then
+            agregarAtras(modesto,A[i])
+        else 
+            agregarAtras(opulento,A[i])
+        endif 
+    endfor  
+    countingSort(modesto) ordeno de mayor a menor por cantidad de pedidos//O(n+3n) = O(n)
+    arreglo(tupla<modesto:lista,opulento:lista>) B <- crearArreglo(z+1) //O(z)
+    for i <-1 to tam(B) //O(z)
+         B[i] <- tupla<vacia(),vacia()> 
+    endfor
+    for i<-0 to longitud(modesto)
+        AgregarAtras(B[π₁(modesto[i])].modesto,modesto[i])
+    endfor 
+    for i<-0 to longitud(opulento)
+        AgregarAtras(B[π₁opulento[i]].opulento,opulento[i])
+    endfor
+    for i<-1 to tam(B)          //O(z)
+        mergeSort(B[i].opulento)    //O(1) porque tam(B[i].opulento) <1000 para todo i
+    endfor  
+    arreglo<lista> C <- crearArreglo(z)
+    for i<-1 to tam(B)
+        C[i] <- concatenar(B[i].opulento, B[i].modesto) //O(1) porque tengo puntero, ya que son linked lists
+    end for 
+    Arreglo(tupla<nat,nat>) RES <- crearArreglo(long(pedidos))
+    nat itRes <-0
+    for i<-1 to tam(C)  //O(n) en total
+        for j <- 1 to tam(C[i])
+            RES[itRes] <- C[i][j]
+            itRes <- itRes + 1
+        endfor 
+    endfor 
+    return res;
+        
+Complejidad final: O(n+z)
+
+    
+
+
+
+
+
+
+    array(nat) B <- crearArreglo(z)     //O(z)
+    for i<-1 to tam(B)                 //O(z)
+        tupla<modesto:lista,opulento:lista> B[i] <- <vacia(),vacia()>
+    for i<-0 to tam(pedidos)            //O(tam(pedidos))
+        if π₂A[i] ≤ 3n then
+            agregarAtras(B[π₁A[i]].modesto,A[i])
+        else 
+            agregarAtras(B[π₁A[i]].opulento,A[i])
+        endif
+    for i<-1 to tam(B)
+        mergeSort(B[i].opulentos)   //O(1) puesto que son <1000
+        countingSort(B[i].modesto)  //O(n+3n) = O(n) 
