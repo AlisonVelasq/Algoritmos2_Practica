@@ -5,6 +5,7 @@ Describa un algoritmo que realice el ordenamiento descrito, utilizando las estru
 
 OrdenarxFrecuencia(in/out A:arreglo(nat), n:nat){
     mergeSort(A)//hago este mergesort para que despues al ordenar por cantidad y hay arreglos con cant iguales, me aparesca ordenaos segundo el elem (menor y mayor)
+    //mergeSort es estable por lo que todo se mantiene bien
     arreglo((nat, nat)) D <- compactar(A)
     //compacta a talque el primer elem es el numero y el segundo la cant de apariciones
     mergeSort(D) //ordena comparando los segundos valores de la tuplas //ordena por cantidad
