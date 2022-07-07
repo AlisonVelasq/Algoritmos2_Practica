@@ -36,3 +36,5 @@ return res
 p <- concatenar(bucketsF, bucketsM)
 
 }
+
+2) separo en k-bucket y sigue igual  

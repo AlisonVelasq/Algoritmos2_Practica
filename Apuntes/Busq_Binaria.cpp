@@ -6,7 +6,7 @@ Busq_Binaria(in A:arreglo(nat), in value:nat){
   //sea borrar, cambia un puntero, etc
 
   nat desde = 0
-  nat hasta =
+  nat hasta = tam(A)
 
   while (desde <= hasta) {
     mid = (desde+hasta)/2 //es el indice que accede al array
@@ -23,6 +23,7 @@ Busq_Binaria(in A:arreglo(nat), in value:nat){
     }
   }
 }
+complejidad: O(logn)
 
 Otra con recursion:
 
@@ -38,7 +39,7 @@ Buscar(A, elem, desde, hasta)->int {
   if elem <= A[mid] then
      retun Buscar(A, elem, desde, mid) //T(n/2)
   else
-     return Buscar(A, elem, m, hasta) //T(n/2)
+     return Buscar(A, elem, mid, hasta) //T(n/2)
 }
 
 Complejidad: T(n) = T(n/2) + tita(1)
