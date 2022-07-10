@@ -1,0 +1,79 @@
+NOMBRE:  Alison Velasquez
+LU: 566/20
+TEMA: 67
+MATERI:  Organizacion 1
+
+---------------------------------------------------------------------------------------------
+
+EJERCICIOS:
+
+Ejercicio 1 Sabiendo que a1 = 0xffffffff, ¿Cuanto queda almacenado en a2 luego de realizar
+la operacion: andi a2,a1,0xf0f?
+
+El andi calcula el AND a nivel de bits del inmediato 0xf0f y el registro a1 y escribe el resultado en a2
+Entonces: 
+
+andi a2, a1, 0xf0f : 
+a1 es de 32 bits, pero el inmediato es de 12 bits, entonces este se extiende agregando ceros, por lo tanto me queda:0x00000f0f
+
+Entonces el resultado de la operacion andi a2,a1,0x00000f0f es 00000f0f
+
+las instrucciones lógicas, leen dos valores de registros de 32 bits y escriben el resultado al registro destino también de 32 bits y a los valores inmediatos siempre se les hace sign-extension
+(pag 20 y 27)
+
+---------------------------------------------------------------------------------------------
+
+Ejercicio 2 Explicar detalladamente el funcionamiento del siguiente programa en assembler:
+
+main :
+    addi a1 , x0 , 2     # a1 = 2
+    addi a2 , x0 , 1     # a2 = 1
+    bltu a2 , a1 , test  # si a2 < a1 then saltar a la etiqueta test
+    sub a3 , a2 , a1     # a3 = a2-a1
+    jal end              # salta a la etiqueta end
+test :
+    sub a3 , a1 , a2     # a3 = a1-a2
+end :
+    nop                  # no operation
+
+(apendice A)
+sin abreviaciones:
+
+addi: add immediate   (immediate = inmediato o direccion de memoria)
+sub : subtract
+bltu : branch less than unsigned
+jal : jump and link
+
+
+FUNCIONAMIENTO:
+primero suma el inmediato al registro y escribe el resultado en a1 y a2 segun corresponda
+luego, bltu hace una comparacion (a2<a1) 
+(*)si se cumple salto test (asigna al PC su valor actual + offset, es decir me lleva al test, que hace una resta (a1-a2) y lo guarda en a3, en este caso la resta me devolvera un numero positivo y luego ejecuta el nop
+(*)sino, no hace al test y hace la resta en a3 (a2-a1), que tambien sera un numero positivo (ya que a2>a1) y luego hare el salto al nop
+podemos concluir que el programa hace la resta en modulo
+(apendice A)
+---------------------------------------------------------------------------------------------
+Ejercicio 3 ¿Como se hace una lectura del PC?
+
+A priori no podria leer el PC directamente, pero podria usar la instrucion auipc con un immediate 0 para leer el PC.
+auipc rd, immediate : lo que hace esto es sumarle al PC el immediate y escribe el resultado en rd, pero como el immediate es 0 entonces me guarda el valor actual del pc y de esta forma puedo leerlo mediante rd.
+(pag 24, leyendo PC)
+
+---------------------------------------------------------------------------------------------
+Ejercicio 5 Suponiendo que las señales de control estan conectadas a la unidad de control
+(mem op, enOut) y los registros de datos al bus (wrAddr, rdAddr, inData, outData):
+Escriba un microprograma que permita limpiar el contenido del valor que se encuentra en la
+direccion referida por el registro indicado en el operando X del decoder.
+
+ limpiar : 
+    mem_op = 001 RB_enOut RB_selectindexin = 0 
+    mem_op = 110
+    reset microPC
+
+En la primer linea guardo en wrAddr el valor de X, que sale del multiplexor por que llamo a RB_selectindexin = 0 (saca al BUS solo la parte X), ya que 001: [wrAddr] <- BUS y en este momento esta el valor de X, luego con mem_op =110, limpio ese valor, finalmente hago el reset
+
+
+
+
+
+
